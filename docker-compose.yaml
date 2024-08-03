@@ -1,0 +1,25 @@
+version: "3"
+services:
+  app:
+   image: dalongrong/chainlit
+   volumes:
+     - ./.envprod:/app/.env
+   ports:
+      - "8000:8000"
+  # minio:
+  #   image: minio/minio
+  #   ports:
+  #     - "9000:9000"
+  #     - "19001:19001"
+  #   environment:
+  #     MINIO_ACCESS_KEY: minio
+  #     MINIO_SECRET_KEY: minio123
+  #     MINIO_API_SELECT_PARQUET: on
+  #   command: server --console-address :19001 --quiet /data
+  pg:
+    image: postgres:15.0
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres

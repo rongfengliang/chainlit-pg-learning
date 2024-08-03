@@ -1,0 +1,2 @@
+CHAINLIT_AUTH_SECRET="IUwEdTyzm8p_rIYNw7YcrYnmf2Fo2Me8HDdxt6H:=D/MHTj4m~zSZrfALW6/cqZ2"
+PG_CONNECTION_STRING="postgresql+asyncpg://postgres:postgres@192.168.31.47:5432/postgres"

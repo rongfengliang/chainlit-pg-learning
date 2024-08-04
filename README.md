@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS steps (
     "type" TEXT NOT NULL,
     "threadId" UUID NOT NULL,
     "parentId" UUID,
-    "disableFeedback" BOOLEAN NOT NULL,
+    "disableFeedback" BOOLEAN,
     "streaming" BOOLEAN NOT NULL,
     "waitForAnswer" BOOLEAN,
     "isError" BOOLEAN,

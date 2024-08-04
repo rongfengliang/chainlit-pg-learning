@@ -1,0 +1,25 @@
+import instructor
+from pydantic import BaseModel
+from openai import OpenAI
+
+
+model_name = "dalongdemov3"
+# Define your desired output structure
+class Sentiment(BaseModel):
+    datetime: str
+    title: str
+
+client = instructor.from_openai(OpenAI(
+    base_url="http://localhost:4000",
+    api_key="sk-ZTp5zuetNQoJNgG4xHgGzw",
+))
+
+# Extract structured data from natural language
+user_info = client.chat.completions.create(
+    model= model_name,
+    response_model=Sentiment,
+    messages=[{"role": "user",  "content":  """"""}],
+)
+
+print(user_info)
+

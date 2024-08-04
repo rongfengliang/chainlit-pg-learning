@@ -1,23 +1,23 @@
 version: "3"
 services:
   app:
-   image: dalongrong/chainlit
+   build: ./
    volumes:
      - ./.envprod:/app/.env
    environment:
-   - PG_CONNECTION_STRING=postgresql+asyncpg://postgres:postgres@192.168.31.47:5432/postgres
+   - PG_CONNECTION_STRING=postgresql+asyncpg://postgres:postgres@pg:5432/postgres
    ports:
      - "8000:8000"
-  # minio:
-  #   image: minio/minio
-  #   ports:
-  #     - "9000:9000"
-  #     - "19001:19001"
-  #   environment:
-  #     MINIO_ACCESS_KEY: minio
-  #     MINIO_SECRET_KEY: minio123
-  #     MINIO_API_SELECT_PARQUET: on
-  #   command: server --console-address :19001 --quiet /data
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "19001:19001"
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+      MINIO_API_SELECT_PARQUET: on
+    command: server --console-address :19001 --quiet /data
   pg:
     image: postgres:15.0
     ports:

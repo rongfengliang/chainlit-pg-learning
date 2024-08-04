@@ -3,7 +3,9 @@ import chainlit.data as cl_data
 from chainlit.data.sql_alchemy import SQLAlchemyDataLayer
 from chainlit.types import ThreadDict
 import os
-cl_data._data_layer = SQLAlchemyDataLayer(conninfo=os.environ["PG_CONNECTION_STRING"])
+from minio import MinioStorageClient
+
+cl_data._data_layer = SQLAlchemyDataLayer(conninfo=os.environ["PG_CONNECTION_STRING"],storage_provider=MinioStorageClient(bucket="chainlit",endpoint_url="http://localhost:9000",aws_access_key_id="minio",aws_secret_access_key="minio123",verify_ssl=False))
 
 @cl.on_chat_resume
 async def on_chat_resume(thread: ThreadDict):
